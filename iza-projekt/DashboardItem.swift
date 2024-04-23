@@ -17,9 +17,12 @@ struct DashboardItem: View {
             .frame(height: 100)
             .cornerRadius(20)
             .overlay(
-                Text(text)
-                    .font(.title)
-                    .foregroundColor(.white)
+                HStack() {
+                    Text(text)
+                        .foregroundStyle(.black)
+                    Spacer()
+                }
+                .padding()
             )
     }
 }
