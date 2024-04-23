@@ -10,14 +10,14 @@ import SwiftUI
 struct DashboardItem: View {
     var color: Color
     var text: String
-    
+
     var body: some View {
         Rectangle()
             .fill(color)
             .frame(height: 100)
             .cornerRadius(20)
             .overlay(
-                HStack() {
+                HStack {
                     Text(text)
                         .foregroundStyle(.black)
                     Spacer()
@@ -28,5 +28,5 @@ struct DashboardItem: View {
 }
 
 #Preview {
-    DashboardItem(color:Color.pink, text:"ahoj")
+    DashboardItem(color: Color.white, text: "ahoj")
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5F983B432BD7C4CD004C3F1A /* GrainyTextureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F983B422BD7C4CD004C3F1A /* GrainyTextureView.swift */; };
+		5F983B452BD7CAB4004C3F1A /* GridTextureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F983B442BD7CAB4004C3F1A /* GridTextureView.swift */; };
+		5F983B472BD7CF11004C3F1A /* SheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F983B462BD7CF11004C3F1A /* SheetContentView.swift */; };
 		5FABE3CD2BD7C03B00378C3A /* iza_projektApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FABE3CC2BD7C03B00378C3A /* iza_projektApp.swift */; };
 		5FABE3D12BD7C03B00378C3A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FABE3D02BD7C03B00378C3A /* Item.swift */; };
 		5FABE3D62BD7C03D00378C3A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FABE3D52BD7C03D00378C3A /* Preview Assets.xcassets */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		5F983B422BD7C4CD004C3F1A /* GrainyTextureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrainyTextureView.swift; sourceTree = "<group>"; };
+		5F983B442BD7CAB4004C3F1A /* GridTextureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTextureView.swift; sourceTree = "<group>"; };
+		5F983B462BD7CF11004C3F1A /* SheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetContentView.swift; sourceTree = "<group>"; };
 		5FABE3C92BD7C03B00378C3A /* iza-projekt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iza-projekt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FABE3CC2BD7C03B00378C3A /* iza_projektApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iza_projektApp.swift; sourceTree = "<group>"; };
 		5FABE3D02BD7C03B00378C3A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 		5FABE3C02BD7C03B00378C3A = {
 			isa = PBXGroup;
 			children = (
+				5F983B442BD7CAB4004C3F1A /* GridTextureView.swift */,
 				5F983B422BD7C4CD004C3F1A /* GrainyTextureView.swift */,
 				5FABE3CB2BD7C03B00378C3A /* iza-projekt */,
 				5FABE3CA2BD7C03B00378C3A /* Products */,
@@ -67,6 +72,7 @@
 				5FABE3E12BD7C0E500378C3A /* Assets.xcassets */,
 				5FABE3E82BD7C0FF00378C3A /* DashboardItem.swift */,
 				5FABE3E02BD7C0E500378C3A /* ContentView.swift */,
+				5F983B462BD7CF11004C3F1A /* SheetContentView.swift */,
 				5FABE3DD2BD7C0E500378C3A /* Lora.ttf */,
 				5FABE3DE2BD7C0E500378C3A /* Tutel.swift */,
 				5FABE3CC2BD7C03B00378C3A /* iza_projektApp.swift */,
@@ -155,7 +161,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F983B472BD7CF11004C3F1A /* SheetContentView.swift in Sources */,
 				5FABE3E42BD7C0E500378C3A /* Tutel.swift in Sources */,
+				5F983B452BD7CAB4004C3F1A /* GridTextureView.swift in Sources */,
 				5FABE3E62BD7C0E500378C3A /* ContentView.swift in Sources */,
 				5FABE3E92BD7C0FF00378C3A /* DashboardItem.swift in Sources */,
 				5FABE3D12BD7C03B00378C3A /* Item.swift in Sources */,

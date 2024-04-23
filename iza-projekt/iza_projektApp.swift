@@ -5,8 +5,8 @@
 //  Created by Tomáš Hobza on 23.04.2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct iza_projektApp: App {
