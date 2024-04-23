@@ -8,19 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		5FABE3CD2BD7C03B00378C3A /* iza_projektApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FABE3CC2BD7C03B00378C3A /* iza_projektApp.swift */; };
-		5FABE3CF2BD7C03B00378C3A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FABE3CE2BD7C03B00378C3A /* ContentView.swift */; };
 		5FABE3D12BD7C03B00378C3A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FABE3D02BD7C03B00378C3A /* Item.swift */; };
-		5FABE3D32BD7C03D00378C3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FABE3D22BD7C03D00378C3A /* Assets.xcassets */; };
 		5FABE3D62BD7C03D00378C3A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FABE3D52BD7C03D00378C3A /* Preview Assets.xcassets */; };
+		5FABE3E32BD7C0E500378C3A /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FABE3DD2BD7C0E500378C3A /* Lora.ttf */; };
+		5FABE3E42BD7C0E500378C3A /* Tutel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FABE3DE2BD7C0E500378C3A /* Tutel.swift */; };
+		5FABE3E62BD7C0E500378C3A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FABE3E02BD7C0E500378C3A /* ContentView.swift */; };
+		5FABE3E72BD7C0E500378C3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FABE3E12BD7C0E500378C3A /* Assets.xcassets */; };
+		5FABE3E92BD7C0FF00378C3A /* DashboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FABE3E82BD7C0FF00378C3A /* DashboardItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5FABE3C92BD7C03B00378C3A /* iza-projekt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iza-projekt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FABE3CC2BD7C03B00378C3A /* iza_projektApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iza_projektApp.swift; sourceTree = "<group>"; };
-		5FABE3CE2BD7C03B00378C3A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5FABE3D02BD7C03B00378C3A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		5FABE3D22BD7C03D00378C3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FABE3D52BD7C03D00378C3A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5FABE3DD2BD7C0E500378C3A /* Lora.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lora.ttf; sourceTree = "<group>"; };
+		5FABE3DE2BD7C0E500378C3A /* Tutel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutel.swift; sourceTree = "<group>"; };
+		5FABE3E02BD7C0E500378C3A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ../../../../code/sandbox/Landmarks/Landmarks/ContentView.swift; sourceTree = "<group>"; };
+		5FABE3E12BD7C0E500378C3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../code/sandbox/Landmarks/Landmarks/Assets.xcassets; sourceTree = "<group>"; };
+		5FABE3E82BD7C0FF00378C3A /* DashboardItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
+		5FABE3EA2BD7C14300378C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,10 +60,14 @@
 		5FABE3CB2BD7C03B00378C3A /* iza-projekt */ = {
 			isa = PBXGroup;
 			children = (
+				5FABE3EA2BD7C14300378C3A /* Info.plist */,
+				5FABE3E12BD7C0E500378C3A /* Assets.xcassets */,
+				5FABE3E82BD7C0FF00378C3A /* DashboardItem.swift */,
+				5FABE3E02BD7C0E500378C3A /* ContentView.swift */,
+				5FABE3DD2BD7C0E500378C3A /* Lora.ttf */,
+				5FABE3DE2BD7C0E500378C3A /* Tutel.swift */,
 				5FABE3CC2BD7C03B00378C3A /* iza_projektApp.swift */,
-				5FABE3CE2BD7C03B00378C3A /* ContentView.swift */,
 				5FABE3D02BD7C03B00378C3A /* Item.swift */,
-				5FABE3D22BD7C03D00378C3A /* Assets.xcassets */,
 				5FABE3D42BD7C03D00378C3A /* Preview Content */,
 			);
 			path = "iza-projekt";
@@ -128,8 +139,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FABE3E32BD7C0E500378C3A /* Lora.ttf in Resources */,
 				5FABE3D62BD7C03D00378C3A /* Preview Assets.xcassets in Resources */,
-				5FABE3D32BD7C03D00378C3A /* Assets.xcassets in Resources */,
+				5FABE3E72BD7C0E500378C3A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FABE3CF2BD7C03B00378C3A /* ContentView.swift in Sources */,
+				5FABE3E42BD7C0E500378C3A /* Tutel.swift in Sources */,
+				5FABE3E62BD7C0E500378C3A /* ContentView.swift in Sources */,
+				5FABE3E92BD7C0FF00378C3A /* DashboardItem.swift in Sources */,
 				5FABE3D12BD7C03B00378C3A /* Item.swift in Sources */,
 				5FABE3CD2BD7C03B00378C3A /* iza_projektApp.swift in Sources */,
 			);
@@ -279,6 +293,7 @@
 				DEVELOPMENT_TEAM = 94SBMDT92A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iza-projekt/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -308,6 +323,7 @@
 				DEVELOPMENT_TEAM = 94SBMDT92A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iza-projekt/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
