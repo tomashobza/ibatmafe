@@ -12,7 +12,7 @@ import SwiftUI
 struct iza_projektApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Event.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -28,5 +28,6 @@ struct iza_projektApp: App {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
+//        .modelContainer(for: Event.self)
     }
 }

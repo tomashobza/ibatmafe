@@ -5,24 +5,58 @@
 //  Created by Tomáš Hobza on 23.04.2024.
 //
 
+import SwiftData
 import SwiftUI
 
 struct SheetContentView: View {
+    @Environment(\.modelContext) var modelContext
     @Environment(\.presentationMode) var presentationMode
+
+    @Bindable var item: Event = .init(title: "", subject: "")
 
     var body: some View {
         VStack {
-            Text("Here's some information for you.")
+//            Button("Cus")
+            Text("Create event")
+                .font(.title)
                 .padding()
 
-            Button("Close") {
-                // Dismiss the sheet
-                presentationMode.wrappedValue.dismiss()
+            Form {
+                TextField("Title", text: $item.title)
+                TextField("Subject", text: $item.subject)
+                DatePicker("Date", selection: $item.date)
+
+                Section("Type") {
+                    Picker("Type", selection: $item.type) {
+                        Text("General").tag(EventType.general)
+                        Text("Project").tag(EventType.project)
+                        Text("Final").tag(EventType.final)
+                        Text("Midterm").tag(EventType.midterm)
+                    }
+                }
             }
-            .padding()
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .cornerRadius(10)
+            VStack {
+                HStack {
+                    Button("Dismiss") {
+                        // Dismiss the sheet
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    .padding()
+                    .foregroundColor(.bg)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+
+                    Button("Save") {
+                        // Save the event
+                        modelContext.insert(item)
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    .padding()
+                    .foregroundColor(.bg)
+                    .background(Color.oranzova)
+                    .cornerRadius(10)
+                }
+            }
         }
         .padding()
     }
