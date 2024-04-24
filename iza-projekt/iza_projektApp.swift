@@ -2,17 +2,17 @@
 //  iza_projektApp.swift
 //  iza-projekt
 //
-//  Created by Tomáš Hobza on 24.04.2024.
+//  Created by Tomáš Hobza on 23.04.2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct iza_projektApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Event.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -28,5 +28,6 @@ struct iza_projektApp: App {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
+//        .modelContainer(for: Event.self)
     }
 }

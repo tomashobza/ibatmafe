@@ -2,60 +2,89 @@
 //  ContentView.swift
 //  iza-projekt
 //
-//  Created by Tomáš Hobza on 24.04.2024.
+//  Created by Tomáš Hobza on 22.04.2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Environment(\.modelContext) var modelContext
+    @Query var events: [Event]
+
+    @State private var showingSheet = false // State for showing the sheet
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        NavigationView {
+            VStack(spacing: 0) {
+                // Title
+                HStack {
+                    Text("Your dashboard")
+                        .font(.custom("Lora", size: 32, relativeTo: .body))
+                        .padding()
+                        .foregroundStyle(.bg)
+
+                    Spacer()
+                    Button(action: {
+                        showingSheet = true
+                    }) {
+                        Image(systemName: "plus")
                     }
+                    .padding()
+                    .foregroundStyle(.bg)
+                    .font(.title)
                 }
-                .onDelete(perform: deleteItems)
+                .overlay(
+                    GrainyTextureView()
+                        .opacity(0.5)
+                )
+                .background(Color.oranzova)
+
+                Tutel()
+
+                ScrollView {
+                    // Scrollable content
+                    VStack(spacing: 20) {
+                        ForEach(events, id: \.self) { event in
+                            NavigationLink(destination: DetailView(item: event)) {
+                                DashboardItem(item: event)
+                            }
+                        }
+                        Rectangle().frame(height: 30).opacity(0)
+                    }.offset(y: 20)
+                        .padding(.horizontal)
+                }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
+            .background(.bg)
+            .edgesIgnoringSafeArea(.bottom)
+            .sheet(isPresented: $showingSheet) {
+                SheetContentView()
             }
-        } detail: {
-            Text("Select an item")
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
+    func addSamples() {
+        let event = Event(subject: "Test event", date: Date())
+        modelContext.insert(event)
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+    func deleteEvents(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let event = events[index]
+            modelContext.delete(event)
         }
     }
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Event.self, configurations: config)
+        let item = Event(title: "cus", subject: "tom")
+
+        return ContentView()
+            .modelContainer(container)
+    } catch {
+        fatalError("Failed to create ModelContainer: \(error)")
+    }
 }
