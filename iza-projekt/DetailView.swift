@@ -12,39 +12,37 @@ struct DetailView: View {
     @Bindable var item: Event
 
     var body: some View {
-        ZStack {
-            Color
-                .oranzova
-                .overlay(
-                    Color.black.opacity(0.5)
-                )
-                .overlay(
-                    GrainyTextureView()
-                        .opacity(0.25)
-                )
-                .ignoresSafeArea(.all)
+        VStack {
+            Form {
+                TextField("Title", text: $item.title)
+                TextField("Subject", text: $item.subject)
+                DatePicker("Date", selection: $item.date)
 
-            VStack {
-                Form {
-                    TextField("Title", text: $item.title)
-                    TextField("Subject", text: $item.subject)
-                    DatePicker("Date", selection: $item.date)
-
-                    Section("Type") {
-                        Picker("Type", selection: $item.type) {
-                            Text("General").tag(EventType.general)
-                            Text("Project").tag(EventType.project)
-                            Text("Final").tag(EventType.final)
-                            Text("Midterm").tag(EventType.midterm)
-                        }
+                Section("Type") {
+                    Picker("Type", selection: $item.type) {
+                        Text("General").tag(EventType.general)
+                        Text("Project").tag(EventType.project)
+                        Text("Final").tag(EventType.final)
+                        Text("Midterm").tag(EventType.midterm)
                     }
                 }
-                .scrollContentBackground(.hidden)
             }
-            .navigationTitle(
-                Text("Edit event")
+            .scrollContentBackground(
+                .hidden
+            )
+            .background(
+                Color.oranzova
+                    .overlay(
+                        GrainyTextureView()
+                            .opacity(0.5)
+                            .ignoresSafeArea(.all)
+                    )
+                    .ignoresSafeArea(edges: .bottom)
             )
         }
+        .navigationTitle(
+            Text("Edit event")
+        )
     }
 }
 

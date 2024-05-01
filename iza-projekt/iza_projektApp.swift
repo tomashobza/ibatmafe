@@ -9,6 +9,7 @@ import SwiftData
 import SwiftUI
 
 @main
+
 struct iza_projektApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([

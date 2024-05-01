@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(\.colorScheme) var colorScheme
     @Query var events: [Event]
 
     @State private var showingSheet = false // State for showing the sheet
@@ -34,13 +35,12 @@ struct ContentView: View {
                     .foregroundStyle(.bg)
                     .font(.title)
                 }
-                .overlay(
+                .background(
                     GrainyTextureView()
-                        .opacity(0.5)
+                        .ignoresSafeArea(.all)
+                        .opacity(colorScheme == .dark ? 1 : 0)
                 )
-                .background(Color.oranzova)
-
-                Tutel()
+                .background(Color.oranzova.opacity(colorScheme == .dark ? 1 : 0))
 
                 ScrollView {
                     // Scrollable content
@@ -55,7 +55,12 @@ struct ContentView: View {
                         .padding(.horizontal)
                 }
             }
-            .background(.bg)
+            .background(
+                GrainyTextureView()
+                    .opacity(0.5)
+                    .ignoresSafeArea(.all)
+            )
+            .background(colorScheme == .dark ? .bg : .oranzova)
             .edgesIgnoringSafeArea(.bottom)
             .sheet(isPresented: $showingSheet) {
                 SheetContentView()
@@ -80,7 +85,9 @@ struct ContentView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Event.self, configurations: config)
-        let item = Event(title: "cus", subject: "tom")
+
+        let sampleEvent = Event(title: "cus", subject: "tom")
+        try container.mainContext.insert(sampleEvent)
 
         return ContentView()
             .modelContainer(container)
