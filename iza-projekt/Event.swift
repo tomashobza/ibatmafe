@@ -13,19 +13,6 @@ enum EventType: String, Codable, CaseIterable {
     case final
     case general
     case project
-
-    var description: String {
-        switch self {
-        case .midterm:
-            return "Midterm"
-        case .final:
-            return "Final"
-        case .general:
-            return "General"
-        case .project:
-            return "Project"
-        }
-    }
 }
 
 enum Status: Codable {

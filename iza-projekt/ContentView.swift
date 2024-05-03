@@ -34,6 +34,15 @@ struct ContentView: View {
                     .padding()
                     .foregroundStyle(.bg)
                     .font(.title)
+
+                    Button(action: {
+                        deleteAllEvents()
+                    }) {
+                        Image(systemName: "trash")
+                    }
+                    .padding()
+                    .foregroundStyle(.bg)
+                    .font(.title)
                 }
                 .background(
                     GrainyTextureView()
@@ -46,7 +55,7 @@ struct ContentView: View {
                     // Scrollable content
                     VStack(spacing: 20) {
                         ForEach(events, id: \.self) { event in
-                            NavigationLink(destination: DetailView(item: event)) {
+                            NavigationLink(destination: EventDetailView(item: event)) {
                                 DashboardItem(item: event)
                             }
                         }
@@ -63,7 +72,7 @@ struct ContentView: View {
             .background(colorScheme == .dark ? .bg : .oranzova)
             .edgesIgnoringSafeArea(.bottom)
             .sheet(isPresented: $showingSheet) {
-                SheetContentView()
+                NewEventDrawer()
             }
         }
     }
@@ -76,6 +85,12 @@ struct ContentView: View {
     func deleteEvents(_ indexSet: IndexSet) {
         for index in indexSet {
             let event = events[index]
+            modelContext.delete(event)
+        }
+    }
+
+    func deleteAllEvents() {
+        for event in events {
             modelContext.delete(event)
         }
     }

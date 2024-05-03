@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct SheetContentView: View {
+struct NewEventDrawer: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.presentationMode) var presentationMode
 
@@ -29,7 +29,7 @@ struct SheetContentView: View {
                 Section(header: Text("Type")) {
                     Picker("Type", selection: $item.type) {
                         ForEach(EventType.allCases, id: \.self) { type in
-                            Text(type.rawValue.capitalized).tag(type)
+                            Text(type.rawValue).tag(type)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
@@ -67,6 +67,6 @@ struct SheetContentView: View {
 
 struct SheetContentView_Previews: PreviewProvider {
     static var previews: some View {
-        SheetContentView()
+        NewEventDrawer()
     }
 }

@@ -8,8 +8,12 @@
 import SwiftData
 import SwiftUI
 
-struct DetailView: View {
-    @Bindable var item: Event
+struct EventDetailView: View {
+    @State private var item: Event
+
+    init(item: Event) {
+        _item = State(initialValue: item)
+    }
 
     var body: some View {
         VStack {
@@ -47,14 +51,5 @@ struct DetailView: View {
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Event.self, configurations: config)
-        let item = Event(title: "cus", subject: "tom")
-
-        return DetailView(item: item)
-            .modelContainer(container)
-    } catch {
-        fatalError("Failed to create ModelContainer: \(error)")
-    }
+    EventDetailView(item: Event(title: "cus", subject: "tom"))
 }
