@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-enum EventType: Codable {
+enum EventType: String, Codable, CaseIterable {
     case midterm
     case final
     case general

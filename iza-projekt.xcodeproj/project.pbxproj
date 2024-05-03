@@ -13,10 +13,10 @@
 		5F9BBC422BD96F46008AEF3E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9BBC412BD96F46008AEF3E /* Preview Assets.xcassets */; };
 		5FAFFACB2BD97561001577E1 /* GrainyTextureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFACA2BD97561001577E1 /* GrainyTextureView.swift */; };
 		5FAFFACF2BD97581001577E1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFACE2BD97581001577E1 /* Event.swift */; };
-		5FAFFAD12BD975A9001577E1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD02BD975A9001577E1 /* DetailView.swift */; };
-		5FAFFAD32BD975BD001577E1 /* DashboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD22BD975BD001577E1 /* DashboardItem.swift */; };
+		5FAFFAD12BD975A9001577E1 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD02BD975A9001577E1 /* EventDetailView.swift */; };
+		5FAFFAD32BD975BD001577E1 /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD22BD975BD001577E1 /* EventItem.swift */; };
 		5FAFFAD52BD975D9001577E1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD42BD975D9001577E1 /* Item.swift */; };
-		5FAFFAD72BD975EF001577E1 /* SheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD62BD975EF001577E1 /* SheetContentView.swift */; };
+		5FAFFAD72BD975EF001577E1 /* NewEventDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD62BD975EF001577E1 /* NewEventDrawer.swift */; };
 		5FAFFAD92BD975FE001577E1 /* Tutel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD82BD975FE001577E1 /* Tutel.swift */; };
 		5FAFFADB2BD9762E001577E1 /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FAFFADA2BD9762E001577E1 /* Lora.ttf */; };
 /* End PBXBuildFile section */
@@ -29,10 +29,10 @@
 		5F9BBC412BD96F46008AEF3E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5FAFFACA2BD97561001577E1 /* GrainyTextureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrainyTextureView.swift; sourceTree = "<group>"; };
 		5FAFFACE2BD97581001577E1 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		5FAFFAD02BD975A9001577E1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		5FAFFAD22BD975BD001577E1 /* DashboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
+		5FAFFAD02BD975A9001577E1 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		5FAFFAD22BD975BD001577E1 /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
 		5FAFFAD42BD975D9001577E1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		5FAFFAD62BD975EF001577E1 /* SheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetContentView.swift; sourceTree = "<group>"; };
+		5FAFFAD62BD975EF001577E1 /* NewEventDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventDrawer.swift; sourceTree = "<group>"; };
 		5FAFFAD82BD975FE001577E1 /* Tutel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutel.swift; sourceTree = "<group>"; };
 		5FAFFADA2BD9762E001577E1 /* Lora.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lora.ttf; sourceTree = "<group>"; };
 		5FAFFADC2BD97638001577E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -73,11 +73,11 @@
 				5F9BBC3A2BD96F45008AEF3E /* ContentView.swift */,
 				5FAFFACA2BD97561001577E1 /* GrainyTextureView.swift */,
 				5FAFFADA2BD9762E001577E1 /* Lora.ttf */,
-				5FAFFAD22BD975BD001577E1 /* DashboardItem.swift */,
-				5FAFFAD02BD975A9001577E1 /* DetailView.swift */,
+				5FAFFAD22BD975BD001577E1 /* EventItem.swift */,
+				5FAFFAD02BD975A9001577E1 /* EventDetailView.swift */,
 				5FAFFAD82BD975FE001577E1 /* Tutel.swift */,
 				5FAFFACE2BD97581001577E1 /* Event.swift */,
-				5FAFFAD62BD975EF001577E1 /* SheetContentView.swift */,
+				5FAFFAD62BD975EF001577E1 /* NewEventDrawer.swift */,
 				5F9BBC3E2BD96F46008AEF3E /* Assets.xcassets */,
 				5FAFFAD42BD975D9001577E1 /* Item.swift */,
 				5F9BBC402BD96F46008AEF3E /* Preview Content */,
@@ -164,15 +164,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FAFFAD72BD975EF001577E1 /* SheetContentView.swift in Sources */,
+				5FAFFAD72BD975EF001577E1 /* NewEventDrawer.swift in Sources */,
 				5FAFFACB2BD97561001577E1 /* GrainyTextureView.swift in Sources */,
-				5FAFFAD12BD975A9001577E1 /* DetailView.swift in Sources */,
+				5FAFFAD12BD975A9001577E1 /* EventDetailView.swift in Sources */,
 				5F9BBC3B2BD96F45008AEF3E /* ContentView.swift in Sources */,
 				5F9BBC392BD96F45008AEF3E /* iza_projektApp.swift in Sources */,
 				5FAFFAD52BD975D9001577E1 /* Item.swift in Sources */,
 				5FAFFAD92BD975FE001577E1 /* Tutel.swift in Sources */,
 				5FAFFACF2BD97581001577E1 /* Event.swift in Sources */,
-				5FAFFAD32BD975BD001577E1 /* DashboardItem.swift in Sources */,
+				5FAFFAD32BD975BD001577E1 /* EventItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +310,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iza-projekt/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = ImBadAtTimeManagementAndForgetEverything;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -340,6 +341,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iza-projekt/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = ImBadAtTimeManagementAndForgetEverything;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
