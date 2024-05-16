@@ -12,7 +12,7 @@ struct GrainyTextureView: View {
         Image("grainytexture")
             .resizable()
             .scaledToFill()
-            .blendMode(.darken)
+            .blendMode(.overlay)
             .opacity(0.25)
     }
 }

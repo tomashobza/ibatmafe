@@ -10,6 +10,7 @@ import SwiftUI
 
 struct EventDetailView: View {
     @State private var item: Event
+        @State private var newTaskDescription: String = ""
 
     init(item: Event) {
         _item = State(initialValue: item)
@@ -30,23 +31,47 @@ struct EventDetailView: View {
                         Text("Midterm").tag(EventType.midterm)
                     }
                 }
+                
+                Section(header: Text("Tasks")) {
+                    List {
+                        ForEach($item.tasks) { $task in
+                            HStack {
+                                TextField("Task Description", text: $task.text)
+                                Spacer()
+                                Button(action: {
+                                    task.isDone.toggle()
+                                }) {
+                                    Image(systemName: task.isDone ? "checkmark.circle.fill" : "circle")
+                                        .foregroundColor(task.isDone ? .green : .gray)
+                                }
+                            }
+                        }
+                        .onDelete(perform: deleteTask)
+                    }
+                    HStack {
+                        TextField("New Task", text: $newTaskDescription)
+                        Button(action: addTask) {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
             }
-            .scrollContentBackground(
-                .hidden
-            )
-            .background(
-                Color.oranzova
-                    .overlay(
-                        GrainyTextureView()
-                            .opacity(0.5)
-                            .ignoresSafeArea(.all)
-                    )
-                    .ignoresSafeArea(edges: .bottom)
-            )
         }
         .navigationTitle(
             Text("Edit event")
         )
+    }
+    
+    private func addTask() {
+        guard !newTaskDescription.isEmpty else { return }
+        let newTask = Task(text: newTaskDescription)
+        item.tasks.append(newTask)
+        newTaskDescription = ""
+    }
+    
+    private func deleteTask(at offsets: IndexSet) {
+        item.tasks.remove(atOffsets: offsets)
     }
 }
 

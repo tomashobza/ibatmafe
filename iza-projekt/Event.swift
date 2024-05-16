@@ -39,12 +39,14 @@ class Event {
     var date: Date
     var type: EventType
     var status: Status
+    var tasks: [Task]
 
-    init(title: String = "Name", subject: String = "Subject", date: Date = Date.now, type: EventType = EventType.general, status: Status = Status.upcoming) {
+    init(title: String = "Name", subject: String = "Subject", date: Date = Date.now, type: EventType = EventType.general, status: Status = Status.upcoming, tasks: [Task] = []) {
         self.title = title
         self.subject = subject
         self.date = date
         self.type = type
         self.status = status
+        self.tasks = tasks
     }
 }

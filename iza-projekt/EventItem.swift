@@ -8,39 +8,70 @@
 import SwiftData
 import SwiftUI
 
-struct DashboardItem: View {
+struct EventItem: View {
     var item: Event
-
+    @Environment(\.colorScheme) var colorScheme
+    var onDelete: () -> Void // Closure to handle deletion
+    var onEdit: () -> Void // Closure to handle editing
+    
     var body: some View {
-//        Rectangle()
-//            .fill(.white)
-//            .frame(height: 100)
-//            .cornerRadius(20)
-//            .overlay(
         VStack(alignment: .leading) {
-            HStack(alignment: .top) {
-                Text(item.title)
-                    .font(.title2)
-                Spacer()
-                Text(item.date.formatted(date: .numeric, time: .shortened))
+            HStack {
+                Text(item.type.rawValue.capitalized)
                     .font(.caption2)
-                    .foregroundStyle(.bg)
+                    .bold()
+                    .foregroundColor(.pink)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 8)
                     .cornerRadius(100)
                     .overlay(
                         RoundedRectangle(cornerRadius: 100)
-                            .stroke(.bg, lineWidth: 1)
+                            .stroke(.pink, lineWidth: 1.5)
+                    )
+                
+                Spacer()
+                
+                Text(item.date.formatted(date: .numeric, time: .shortened))
+                    .font(.caption2)
+                    .bold()
+                    .foregroundColor(.bg)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .cornerRadius(100)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 100)
+                            .stroke(.bg, lineWidth: 1.5)
                     )
             }
+            
+            Text(item.title)
+                .font(.title2)
+                .foregroundColor(.bg)
+            Spacer()
+            
             Text(item.subject)
                 .font(.subheadline)
+                .foregroundColor(.bg)
         }
         .padding()
-        .background(.bila)
-        .clipShape(.rect(cornerRadius: 20))
-        .foregroundStyle(.bg)
-//            )
+        .background(colorScheme == .dark ? Color.white : Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .foregroundColor(.bg)
+        .contextMenu {
+            Button(action: {
+                // Action for editing the event
+                onEdit()
+            }) {
+                Label("Edit", systemImage: "pencil")
+            }
+            
+            Button(action: {
+                // Action for deleting the event
+                onDelete()
+            }) {
+                Label("Delete", systemImage: "trash")
+            }
+        }
     }
 }
 
@@ -50,7 +81,7 @@ struct DashboardItem: View {
         let container = try ModelContainer(for: Event.self, configurations: config)
         let item = Event(title: "cus", subject: "tom")
 
-        return DashboardItem(item: item)
+        return EventItem(item: item, onDelete: {}, onEdit: {})
             .modelContainer(container)
     } catch {
         fatalError("Failed to create ModelContainer: \(error)")
