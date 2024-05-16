@@ -36,10 +36,15 @@ struct NewEventDrawer: View {
                 }
             }
             .navigationTitle("Create Event")
-            .navigationBarItems(leading: Button("Cancel") {
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading: Button(action: {
                 presentationMode.wrappedValue.dismiss()
-            }, trailing: Button("Save") {
+            }) {
+                Image(systemName: "xmark")
+            }, trailing: Button(action: {
                 saveEvent()
+            }) {
+                Image(systemName: "checkmark")
             })
         }
         .alert(isPresented: $showingAlert) {

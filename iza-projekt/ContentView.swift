@@ -14,89 +14,90 @@ struct ContentView: View {
     @Query var events: [Event]
 
     @State private var showingSheet = false // State for showing the sheet
+    @State private var navigationPath = NavigationPath() // State for the navigation path
     @State private var selectedEvent: Event? // State for the selected event to edit
 
     init() {
         // Customize the navigation bar appearance
         let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "oranzova") ?? .white]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "oranzova") ?? .white]
+        let font = UIFont(name: "Lora", size: 34)!
+
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor(named: "oranzova") ?? .white,
+        ]
+
+        appearance.largeTitleTextAttributes = [
+            .foregroundColor: UIColor(named: "oranzova") ?? .white,
+            .font: font,
+        ]
+
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: "Lora", size: 34)!]
 
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().tintColor = .clear
+        UINavigationBar.appearance().backgroundColor = .clear
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $navigationPath) {
             ZStack(alignment: .top) {
                 ScrollView {
                     // Scrollable content
                     VStack(spacing: 20) {
                         ForEach(events, id: \.self) { event in
-                            NavigationLink(destination: EventDetailView(item: event)) {
-                                EventItem(item: event, onDelete: {
-                                    deleteEvent(event)
-                                }, onEdit: {
-                                    selectedEvent = event
-                                })
-                                .background(
-                                    NavigationLink(
-                                        destination: EventDetailView(item: event),
-                                        isActive: Binding<Bool>(
-                                            get: { selectedEvent == event },
-                                            set: { isActive in
-                                                if !isActive {
-                                                    selectedEvent = nil
-                                                }
-                                            }
-                                        )
-                                    ) {
-                                        EmptyView()
-                                    }
-                                    .hidden()
-                                )
-                            }
+                            EventItem(item: event, onDelete: {
+                                deleteEvent(event)
+                            }, onEdit: {
+                                navigationPath.append(event)
+                            })
                         }
                         Rectangle().frame(height: 30).opacity(0)
-                    }.offset(y: 90)
-                        .padding(.horizontal)
-                }
-                // Title
-                HStack {
-                    Text("Your dashboard")
-                        .font(.custom("Lora", size: 32, relativeTo: .body))
-                        .padding()
-
-                    Spacer()
-
-                    HStack {
-                        Button(action: {
-                            showingSheet = true
-                        }) {
-                            Image(systemName: "plus")
-                        }
-                        .font(.title2)
-
-                        Button(action: {
-                            deleteAllEvents()
-                        }) {
-                            Image(systemName: "trash")
-                        }
-                        .font(.title2)
-                        .padding()
                     }
+//                    .offset(y: 90)
+                    .offset(y: 10)
+                    .padding(.horizontal)
                 }
-                .padding(.vertical)
-                .foregroundStyle(colorScheme == .dark ? .oranzova : .bg)
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [(colorScheme == .dark ? Color.bg : Color.oranzova).opacity(1), (colorScheme == .dark ? Color.bg : Color.oranzova).opacity(0)]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                    .edgesIgnoringSafeArea(.vertical)
-                )
+//                // Title
+//                HStack {
+//                    Text("Your dashboard")
+//                        .font(.custom("Lora", size: 32, relativeTo: .body))
+//                        .padding()
+//
+//                    Spacer()
+//
+//                    HStack {
+//                        Button(action: {
+//                            showingSheet = true
+//                        }) {
+//                            Image(systemName: "plus")
+//                        }
+//                        .font(.title2)
+//
+//                        Button(action: {
+//                            deleteAllEvents()
+//                        }) {
+//                            Image(systemName: "trash")
+//                        }
+//                        .font(.title2)
+//                        .padding()
+//                    }
+//                }
+//                .padding(.vertical)
+//                .foregroundStyle(colorScheme == .dark ? .oranzova : .bg)
+//                .background(
+//                    LinearGradient(
+//                        gradient: Gradient(colors: [(colorScheme == .dark ? Color.bg : Color.oranzova).opacity(1), (colorScheme == .dark ? Color.bg : Color.oranzova).opacity(0)]),
+//                        startPoint: .top,
+//                        endPoint: .bottom
+//                    )
+//                    .edgesIgnoringSafeArea(.vertical)
+//                )
             }
             .background(
                 GrainyTextureView()
@@ -108,6 +109,34 @@ struct ContentView: View {
             .sheet(isPresented: $showingSheet) {
                 NewEventDrawer()
             }
+            .navigationDestination(for: Event.self) { event in
+                EventDetailView(item: event)
+            }
+            .navigationTitle(
+                Text("Events")
+            )
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    HStack {
+                        Button(action: {
+                            showingSheet = true
+                        }) {
+                            Image(systemName: "plus")
+                        }
+                        .font(.title2)
+                        .foregroundStyle(.bg)
+                    }
+                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button(action: {
+//                        deleteAllEvents()
+//                    }) {
+//                        Image(systemName: "trash")
+//                    }
+//                    .font(.title2)
+//                }
+            }
+            .toolbarBackground(.clear)
         }
     }
 

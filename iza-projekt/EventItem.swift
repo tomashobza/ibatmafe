@@ -57,6 +57,9 @@ struct EventItem: View {
         .background(colorScheme == .dark ? Color.white : Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .foregroundColor(.bg)
+        .onTapGesture {
+            onEdit()
+        }
         .contextMenu {
             Button(action: {
                 // Action for editing the event

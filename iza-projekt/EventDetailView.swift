@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EventDetailView: View {
     @State private var item: Event
-        @State private var newTaskDescription: String = ""
+    @State private var newTaskDescription: String = ""
 
     init(item: Event) {
         _item = State(initialValue: item)
@@ -19,9 +19,11 @@ struct EventDetailView: View {
     var body: some View {
         VStack {
             Form {
-                TextField("Title", text: $item.title)
-                TextField("Subject", text: $item.subject)
-                DatePicker("Date", selection: $item.date)
+                Section(header: Text("General")) {
+                    TextField("Title", text: $item.title)
+                    TextField("Subject", text: $item.subject)
+                    DatePicker("Date", selection: $item.date)
+                }
 
                 Section("Type") {
                     Picker("Type", selection: $item.type) {
@@ -31,7 +33,7 @@ struct EventDetailView: View {
                         Text("Midterm").tag(EventType.midterm)
                     }
                 }
-                
+
                 Section(header: Text("Tasks")) {
                     List {
                         ForEach($item.tasks) { $task in
@@ -58,18 +60,19 @@ struct EventDetailView: View {
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(
             Text("Edit event")
         )
     }
-    
+
     private func addTask() {
         guard !newTaskDescription.isEmpty else { return }
         let newTask = Task(text: newTaskDescription)
         item.tasks.append(newTask)
         newTaskDescription = ""
     }
-    
+
     private func deleteTask(at offsets: IndexSet) {
         item.tasks.remove(atOffsets: offsets)
     }
