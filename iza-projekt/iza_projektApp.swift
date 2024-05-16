@@ -13,7 +13,7 @@ import SwiftUI
 struct iza_projektApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Event.self,
+            Event.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
