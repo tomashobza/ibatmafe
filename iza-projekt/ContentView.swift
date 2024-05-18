@@ -32,15 +32,21 @@ struct ContentView: View {
     @State private var sortingOption: SortingOption = .date // State for sorting option
 
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg, .font: UIFont(name: "Lora", size: 34)!]
-        // Inline Navigation Title
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg]
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .foregroundColor: UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg,
+            .font: UIFont(name: "Lora", size: 34)!
+        ]
+
+        UINavigationBar.appearance().titleTextAttributes = [
+            .foregroundColor: UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg
+        ]
 
         // Set the tint color of the UITextField within the UISearchBar
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg
 
-        // Customize the color of the search bar "Cancel" button
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg
+        // Attempt to specifically customize the color of the search bar "Cancel" button
+        let barButtonItemAppearanceInSearchBar = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+        barButtonItemAppearanceInSearchBar.tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg
     }
 
     var body: some View {
@@ -96,6 +102,9 @@ struct ContentView: View {
                     }
                     .padding(.horizontal)
                     .searchable(text: $searchText) // Conditionally display the search bar
+                    .onAppear {
+                        UISearchBar.appearance().tintColor = colorScheme == .dark ? UIColor.oranzova : UIColor.bg
+                    }
                 }
             }
             .background(
