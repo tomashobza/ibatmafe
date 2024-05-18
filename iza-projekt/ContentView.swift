@@ -8,6 +8,16 @@
 import SwiftData
 import SwiftUI
 
+enum GroupingOption: String, CaseIterable {
+    case none = "Don't group"
+    case subject = "Group by subject"
+}
+
+enum SortingOption: String, CaseIterable {
+    case date = "Order by date"
+    case name = "Order by name"
+}
+
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.colorScheme) var colorScheme
@@ -17,7 +27,9 @@ struct ContentView: View {
     @State private var navigationPath = NavigationPath() // State for the navigation path
     @State private var selectedEvent: Event? // State for the selected event to edit
     @State private var searchText = "" // State for search text
-    @State private var showSearchBar = false // State to show/hide search bar
+    @State private var showOptions = false // State to show/hide options
+    @State private var groupingOption: GroupingOption = .none // State for grouping option
+    @State private var sortingOption: SortingOption = .date // State for sorting option
 
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg, .font: UIFont(name: "Lora", size: 34)!]
@@ -37,23 +49,52 @@ struct ContentView: View {
                 ScrollView {
                     // Scrollable content
                     VStack(spacing: 20) {
-                        ForEach(filteredEvents, id: \.self) { event in
-                            EventItem(item: event, onDelete: {
-                                deleteEvent(event)
-                            }, onEdit: {
-                                navigationPath.append(event)
-                            })
+                        // Grouping and Ordering Pickers
+                        if showOptions { // Show the grouping options only when "showOptions" is true
+                            VStack {
+                                Picker("Grouping", selection: $groupingOption) {
+                                    ForEach(GroupingOption.allCases, id: \.self) { option in
+                                        Text(option.rawValue).tag(option)
+                                    }
+                                }
+                                .pickerStyle(SegmentedPickerStyle())
+
+                                Picker("Sorting", selection: $sortingOption) {
+                                    ForEach(SortingOption.allCases, id: \.self) { option in
+                                        Text(option.rawValue).tag(option)
+                                    }
+                                }
+                                .pickerStyle(SegmentedPickerStyle())
+                            }
                         }
+
+                        // Display Events
+                        if groupingOption == .subject {
+                            ForEach(groupedEventsBySubject.keys.sorted(), id: \.self) { subject in
+                                VStack(alignment: .leading) {
+                                    Text(subject).font(.headline) // Show subject title
+                                    ForEach(groupedEventsBySubject[subject]!, id: \.self) { event in
+                                        EventItem(item: event, onDelete: {
+                                            deleteEvent(event)
+                                        }, onEdit: {
+                                            navigationPath.append(event)
+                                        })
+                                    }
+                                }
+                            }
+                        } else {
+                            ForEach(groupedAndSortedEvents, id: \.self) { event in
+                                EventItem(item: event, onDelete: {
+                                    deleteEvent(event)
+                                }, onEdit: {
+                                    navigationPath.append(event)
+                                })
+                            }
+                        }
+
                         Rectangle().frame(height: 30).opacity(0)
                     }
                     .padding(.horizontal)
-                    .gesture(DragGesture().onChanged { value in
-                        if value.translation.height < -20 {
-                            withAnimation {
-                                showSearchBar = true
-                            }
-                        }
-                    })
                     .searchable(text: $searchText) // Conditionally display the search bar
                 }
             }
@@ -67,10 +108,7 @@ struct ContentView: View {
             .sheet(isPresented: $showingSheet) {
                 NewEventDrawer()
             }
-            .navigationTitle(
-                Text("Events")
-                    .foregroundColor(colorScheme == .dark ? Color.oranzova : Color.bg) // Update title color based on color scheme
-            )
+            .navigationTitle("Events")
             .navigationDestination(for: Event.self) { event in
                 EventDetailView(item: event)
             }
@@ -81,6 +119,16 @@ struct ContentView: View {
                             showingSheet = true
                         }) {
                             Image(systemName: "plus")
+                        }
+                        .font(.title2)
+                        .foregroundStyle(colorScheme == .dark ? .oranzova : .bg)
+
+                        Button(action: {
+                            withAnimation {
+                                showOptions.toggle()
+                            }
+                        }) {
+                            Image(systemName: "slider.horizontal.3")
                         }
                         .font(.title2)
                         .foregroundStyle(colorScheme == .dark ? .oranzova : .bg)
@@ -98,6 +146,39 @@ struct ContentView: View {
         }
     }
 
+    var groupedAndSortedEvents: [Event] {
+        let groupedEvents: [Event]
+
+        switch groupingOption {
+        case .none:
+            groupedEvents = filteredEvents
+        case .subject:
+            groupedEvents = filteredEvents.sorted(by: { $0.subject < $1.subject })
+        }
+
+        switch sortingOption {
+        case .date:
+            return groupedEvents.sorted(by: { $0.date < $1.date })
+        case .name:
+            return groupedEvents.sorted(by: { $0.title < $1.title })
+        }
+    }
+
+    var groupedEventsBySubject: [String: [Event]] {
+        var grouped = Dictionary(grouping: filteredEvents, by: { $0.subject })
+        for (key, value) in grouped {
+            grouped[key] = value.sorted {
+                switch sortingOption {
+                case .date:
+                    return $0.date < $1.date
+                case .name:
+                    return $0.title < $1.title
+                }
+            }
+        }
+        return grouped
+    }
+
     func deleteEvent(_ event: Event) {
         modelContext.delete(event)
     }
@@ -108,7 +189,7 @@ struct ContentView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Event.self, configurations: config)
 
-        let sampleEvent = Event(title: "cus", subject: "tom")
+        let sampleEvent = Event(title: "cus", subject: "tom", date: Date())
         container.mainContext.insert(sampleEvent)
 
         return ContentView()
