@@ -16,11 +16,19 @@ struct ContentView: View {
     @State private var showingSheet = false // State for showing the sheet
     @State private var navigationPath = NavigationPath() // State for the navigation path
     @State private var selectedEvent: Event? // State for the selected event to edit
+    @State private var searchText = "" // State for search text
+    @State private var showSearchBar = false // State to show/hide search bar
 
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.bila] // TODO: make this be .oranzova in dark mode and .bg in light mode
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg, .font: UIFont(name: "Lora", size: 34)!]
         // Inline Navigation Title
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.oranzova]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg]
+
+        // Set the tint color of the UITextField within the UISearchBar
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg
+
+        // Customize the color of the search bar "Cancel" button
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UITraitCollection.current.userInterfaceStyle == .dark ? UIColor.oranzova : UIColor.bg
     }
 
     var body: some View {
@@ -29,7 +37,7 @@ struct ContentView: View {
                 ScrollView {
                     // Scrollable content
                     VStack(spacing: 20) {
-                        ForEach(events, id: \.self) { event in
+                        ForEach(filteredEvents, id: \.self) { event in
                             EventItem(item: event, onDelete: {
                                 deleteEvent(event)
                             }, onEdit: {
@@ -38,8 +46,15 @@ struct ContentView: View {
                         }
                         Rectangle().frame(height: 30).opacity(0)
                     }
-                    .offset(y: 20)
                     .padding(.horizontal)
+                    .gesture(DragGesture().onChanged { value in
+                        if value.translation.height < -20 {
+                            withAnimation {
+                                showSearchBar = true
+                            }
+                        }
+                    })
+                    .searchable(text: $searchText) // Conditionally display the search bar
                 }
             }
             .background(
@@ -53,7 +68,8 @@ struct ContentView: View {
                 NewEventDrawer()
             }
             .navigationTitle(
-                Text("Events") // TODO: change the fucking color of this title!!
+                Text("Events")
+                    .foregroundColor(colorScheme == .dark ? Color.oranzova : Color.bg) // Update title color based on color scheme
             )
             .navigationDestination(for: Event.self) { event in
                 EventDetailView(item: event)
@@ -71,7 +87,14 @@ struct ContentView: View {
                     }
                 }
             }
-            .toolbarBackground(.clear)
+        }
+    }
+
+    var filteredEvents: [Event] {
+        if searchText.isEmpty {
+            return events
+        } else {
+            return events.filter { $0.title.lowercased().contains(searchText.lowercased()) || $0.subject.lowercased().contains(searchText.lowercased()) }
         }
     }
 
