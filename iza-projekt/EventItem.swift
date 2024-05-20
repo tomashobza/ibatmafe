@@ -13,7 +13,7 @@ struct EventItem: View {
     @Environment(\.colorScheme) var colorScheme
     var onDelete: () -> Void // Closure to handle deletion
     var onEdit: () -> Void // Closure to handle editing
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -28,9 +28,9 @@ struct EventItem: View {
                         RoundedRectangle(cornerRadius: 100)
                             .stroke(.pink, lineWidth: 1.5)
                     )
-                
+
                 Spacer()
-                
+
                 Text(item.date.formatted(date: .numeric, time: .shortened))
                     .font(.caption2)
                     .bold()
@@ -43,15 +43,28 @@ struct EventItem: View {
                             .stroke(.bg, lineWidth: 1.5)
                     )
             }
-            
+
             Text(item.title)
                 .font(.title2)
                 .foregroundColor(.bg)
             Spacer()
-            
+
             Text(item.subject)
                 .font(.subheadline)
                 .foregroundColor(.bg)
+
+            // Adding the progress bar if there are tasks
+            if item.tasks.count > 0 {
+                HStack {
+                    ProgressView(value: Double(item.tasks.filter { $0.isDone }.count), total: Double(item.tasks.count))
+                        .progressViewStyle(LinearProgressViewStyle(tint: .oranzova))
+                        .frame(height: 10)
+                        .padding(.top, 4)
+                    Text("\(item.progress) %")
+                        .font(.subheadline)
+                        .foregroundColor(.bg)
+                }
+            }
         }
         .padding()
         .background(colorScheme == .dark ? Color.white : Color.white)
@@ -67,7 +80,7 @@ struct EventItem: View {
             }) {
                 Label("Edit", systemImage: "pencil")
             }
-            
+
             Button(action: {
                 // Action for deleting the event
                 onDelete()

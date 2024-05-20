@@ -200,6 +200,11 @@ struct ContentView: View {
 
         let sampleEvent = Event(title: "cus", subject: "tom", date: Date())
         container.mainContext.insert(sampleEvent)
+        
+        let tasks = [Task(text: "Task 1", isDone: true), Task(text: "Task 2", isDone: false)]
+        let item = Event(title: "Meeting", subject: "Discuss project", type: .project, tasks: tasks)
+        container.mainContext.insert(item)
+
 
         return ContentView()
             .modelContainer(container)
