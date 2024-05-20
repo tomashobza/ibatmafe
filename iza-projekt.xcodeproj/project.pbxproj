@@ -24,6 +24,8 @@
 		5FC572322BFBAE9300DF16ED /* EventDateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC572312BFBAE9300DF16ED /* EventDateBadge.swift */; };
 		5FC572362BFBAEED00DF16ED /* EventDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC572352BFBAEED00DF16ED /* EventDetails.swift */; };
 		5FC572382BFBAF3400DF16ED /* EventProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC572372BFBAF3400DF16ED /* EventProgressBar.swift */; };
+		5FC5723A2BFBB9D700DF16ED /* EventDashboardOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC572392BFBB9D700DF16ED /* EventDashboardOptions.swift */; };
+		5FC5723C2BFBBA1700DF16ED /* EventDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC5723B2BFBBA1700DF16ED /* EventDashboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		5FC572312BFBAE9300DF16ED /* EventDateBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDateBadge.swift; sourceTree = "<group>"; };
 		5FC572352BFBAEED00DF16ED /* EventDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetails.swift; sourceTree = "<group>"; };
 		5FC572372BFBAF3400DF16ED /* EventProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProgressBar.swift; sourceTree = "<group>"; };
+		5FC572392BFBB9D700DF16ED /* EventDashboardOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDashboardOptions.swift; sourceTree = "<group>"; };
+		5FC5723B2BFBBA1700DF16ED /* EventDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDashboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 		5FC5722A2BFBA82200DF16ED /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5FC5723D2BFBBA3300DF16ED /* MainScreen */,
 				5FAFFACA2BD97561001577E1 /* GrainyTextureView.swift */,
 				5FC572342BFBAEA500DF16ED /* EventItem */,
 				5FC5722C2BFBA8FC00DF16ED /* EventForm.swift */,
@@ -138,6 +143,15 @@
 				5FC5722F2BFBAE3700DF16ED /* EventTypeBadge.swift */,
 			);
 			path = EventItem;
+			sourceTree = "<group>";
+		};
+		5FC5723D2BFBBA3300DF16ED /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				5FC5723B2BFBBA1700DF16ED /* EventDashboard.swift */,
+				5FC572392BFBB9D700DF16ED /* EventDashboardOptions.swift */,
+			);
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,11 +234,13 @@
 				5F9BBC3B2BD96F45008AEF3E /* ContentView.swift in Sources */,
 				5F9BBC392BD96F45008AEF3E /* iza_projektApp.swift in Sources */,
 				5FC572362BFBAEED00DF16ED /* EventDetails.swift in Sources */,
+				5FC5723C2BFBBA1700DF16ED /* EventDashboard.swift in Sources */,
 				5FC572382BFBAF3400DF16ED /* EventProgressBar.swift in Sources */,
 				5FC5722D2BFBA8FC00DF16ED /* EventForm.swift in Sources */,
 				5FAFFAD92BD975FE001577E1 /* Tutel.swift in Sources */,
 				5FAFFACF2BD97581001577E1 /* Event.swift in Sources */,
 				5FAFFAD32BD975BD001577E1 /* EventItem.swift in Sources */,
+				5FC5723A2BFBB9D700DF16ED /* EventDashboardOptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
