@@ -15,13 +15,11 @@
 		5FAFFACF2BD97581001577E1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFACE2BD97581001577E1 /* Event.swift */; };
 		5FAFFAD12BD975A9001577E1 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD02BD975A9001577E1 /* EventDetailView.swift */; };
 		5FAFFAD32BD975BD001577E1 /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD22BD975BD001577E1 /* EventItem.swift */; };
-		5FAFFAD52BD975D9001577E1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD42BD975D9001577E1 /* Item.swift */; };
 		5FAFFAD72BD975EF001577E1 /* NewEventDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD62BD975EF001577E1 /* NewEventDrawer.swift */; };
 		5FAFFAD92BD975FE001577E1 /* Tutel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFFAD82BD975FE001577E1 /* Tutel.swift */; };
 		5FAFFADB2BD9762E001577E1 /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FAFFADA2BD9762E001577E1 /* Lora.ttf */; };
 		5FC5721D2BF4C88800DF16ED /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC5721C2BF4C88800DF16ED /* Task.swift */; };
-		5FC5721F2BF5220900DF16ED /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC5721E2BF5220900DF16ED /* VisualEffectBlur.swift */; };
-		5FC572252BF666AD00DF16ED /* NavigationBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC572242BF666AD00DF16ED /* NavigationBarConfigurator.swift */; };
+		5FC5722D2BFBA8FC00DF16ED /* EventForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC5722C2BFBA8FC00DF16ED /* EventForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,14 +32,12 @@
 		5FAFFACE2BD97581001577E1 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		5FAFFAD02BD975A9001577E1 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		5FAFFAD22BD975BD001577E1 /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
-		5FAFFAD42BD975D9001577E1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		5FAFFAD62BD975EF001577E1 /* NewEventDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventDrawer.swift; sourceTree = "<group>"; };
 		5FAFFAD82BD975FE001577E1 /* Tutel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutel.swift; sourceTree = "<group>"; };
 		5FAFFADA2BD9762E001577E1 /* Lora.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lora.ttf; sourceTree = "<group>"; };
 		5FAFFADC2BD97638001577E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5FC5721C2BF4C88800DF16ED /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		5FC5721E2BF5220900DF16ED /* VisualEffectBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
-		5FC572242BF666AD00DF16ED /* NavigationBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarConfigurator.swift; sourceTree = "<group>"; };
+		5FC5722C2BFBA8FC00DF16ED /* EventForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,19 +72,11 @@
 			children = (
 				5FAFFADC2BD97638001577E1 /* Info.plist */,
 				5F9BBC382BD96F45008AEF3E /* iza_projektApp.swift */,
-				5F9BBC3A2BD96F45008AEF3E /* ContentView.swift */,
-				5FAFFACA2BD97561001577E1 /* GrainyTextureView.swift */,
 				5FAFFADA2BD9762E001577E1 /* Lora.ttf */,
-				5FAFFAD22BD975BD001577E1 /* EventItem.swift */,
-				5FC572242BF666AD00DF16ED /* NavigationBarConfigurator.swift */,
-				5FC5721E2BF5220900DF16ED /* VisualEffectBlur.swift */,
-				5FAFFAD02BD975A9001577E1 /* EventDetailView.swift */,
-				5FAFFAD82BD975FE001577E1 /* Tutel.swift */,
-				5FAFFACE2BD97581001577E1 /* Event.swift */,
-				5FAFFAD62BD975EF001577E1 /* NewEventDrawer.swift */,
-				5FC5721C2BF4C88800DF16ED /* Task.swift */,
+				5FC572292BFBA80D00DF16ED /* Screens */,
+				5FC5722A2BFBA82200DF16ED /* Components */,
+				5FC5722B2BFBA82E00DF16ED /* Models */,
 				5F9BBC3E2BD96F46008AEF3E /* Assets.xcassets */,
-				5FAFFAD42BD975D9001577E1 /* Item.swift */,
 				5F9BBC402BD96F46008AEF3E /* Preview Content */,
 			);
 			path = "iza-projekt";
@@ -100,6 +88,36 @@
 				5F9BBC412BD96F46008AEF3E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5FC572292BFBA80D00DF16ED /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5F9BBC3A2BD96F45008AEF3E /* ContentView.swift */,
+				5FAFFAD02BD975A9001577E1 /* EventDetailView.swift */,
+				5FAFFAD62BD975EF001577E1 /* NewEventDrawer.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		5FC5722A2BFBA82200DF16ED /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5FAFFACA2BD97561001577E1 /* GrainyTextureView.swift */,
+				5FAFFAD22BD975BD001577E1 /* EventItem.swift */,
+				5FC5722C2BFBA8FC00DF16ED /* EventForm.swift */,
+				5FAFFAD82BD975FE001577E1 /* Tutel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5FC5722B2BFBA82E00DF16ED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5FC5721C2BF4C88800DF16ED /* Task.swift */,
+				5FAFFACE2BD97581001577E1 /* Event.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,15 +193,13 @@
 			files = (
 				5FAFFAD72BD975EF001577E1 /* NewEventDrawer.swift in Sources */,
 				5FAFFACB2BD97561001577E1 /* GrainyTextureView.swift in Sources */,
-				5FC5721F2BF5220900DF16ED /* VisualEffectBlur.swift in Sources */,
 				5FC5721D2BF4C88800DF16ED /* Task.swift in Sources */,
 				5FAFFAD12BD975A9001577E1 /* EventDetailView.swift in Sources */,
 				5F9BBC3B2BD96F45008AEF3E /* ContentView.swift in Sources */,
 				5F9BBC392BD96F45008AEF3E /* iza_projektApp.swift in Sources */,
-				5FAFFAD52BD975D9001577E1 /* Item.swift in Sources */,
+				5FC5722D2BFBA8FC00DF16ED /* EventForm.swift in Sources */,
 				5FAFFAD92BD975FE001577E1 /* Tutel.swift in Sources */,
 				5FAFFACF2BD97581001577E1 /* Event.swift in Sources */,
-				5FC572252BF666AD00DF16ED /* NavigationBarConfigurator.swift in Sources */,
 				5FAFFAD32BD975BD001577E1 /* EventItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

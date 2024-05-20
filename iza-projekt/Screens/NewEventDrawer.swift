@@ -11,7 +11,6 @@ import SwiftUI
 struct NewEventDrawer: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.presentationMode) var presentationMode
-
     @State private var showingAlert = false
     @State private var alertMessage = ""
 
@@ -20,20 +19,7 @@ struct NewEventDrawer: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Event Details")) {
-                    TextField("Title", text: $item.title)
-                    TextField("Subject", text: $item.subject)
-                    DatePicker("Date", selection: $item.date)
-                }
-
-                Section(header: Text("Type")) {
-                    Picker("Type", selection: $item.type) {
-                        ForEach(EventType.allCases, id: \.self) { type in
-                            Text(type.rawValue).tag(type)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                }
+                EventForm(item: $item) // Use the new form component
             }
             .navigationTitle("Create Event")
             .navigationBarTitleDisplayMode(.inline)

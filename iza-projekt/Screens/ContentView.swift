@@ -18,6 +18,11 @@ enum SortingOption: String, CaseIterable {
     case name = "Order by name"
 }
 
+enum SortingDirection: String, CaseIterable {
+    case ascending = "Ascending"
+    case descending = "Descending"
+}
+
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.colorScheme) var colorScheme
@@ -27,9 +32,12 @@ struct ContentView: View {
     @State private var navigationPath = NavigationPath() // State for the navigation path
     @State private var selectedEvent: Event? // State for the selected event to edit
     @State private var searchText = "" // State for search text
+
     @State private var showOptions = false // State to show/hide options
+
     @State private var groupingOption: GroupingOption = .none // State for grouping option
     @State private var sortingOption: SortingOption = .date // State for sorting option
+    @State private var sortingDirection: SortingDirection = .ascending
 
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [
@@ -68,6 +76,13 @@ struct ContentView: View {
                                 Picker("Sorting", selection: $sortingOption) {
                                     ForEach(SortingOption.allCases, id: \.self) { option in
                                         Text(option.rawValue).tag(option)
+                                    }
+                                }
+                                .pickerStyle(SegmentedPickerStyle())
+
+                                Picker("Direction", selection: $sortingDirection) {
+                                    ForEach(SortingDirection.allCases, id: \.self) { direction in
+                                        Text(direction.rawValue).tag(direction)
                                     }
                                 }
                                 .pickerStyle(SegmentedPickerStyle())
@@ -147,6 +162,25 @@ struct ContentView: View {
         }
     }
 
+    var displayEvents: some View {
+        Group {
+            if groupingOption == .subject {
+                ForEach(groupedEventsBySubject.keys.sorted(), id: \.self) { subject in
+                    VStack(alignment: .leading) {
+                        Text(subject).font(.headline)
+                        ForEach(groupedEventsBySubject[subject]!, id: \.self) { event in
+                            EventItem(item: event, onDelete: { deleteEvent(event) }, onEdit: { navigationPath.append(event) })
+                        }
+                    }
+                }
+            } else {
+                ForEach(groupedAndSortedEvents, id: \.self) { event in
+                    EventItem(item: event, onDelete: { deleteEvent(event) }, onEdit: { navigationPath.append(event) })
+                }
+            }
+        }
+    }
+
     var filteredEvents: [Event] {
         if searchText.isEmpty {
             return events
@@ -156,32 +190,28 @@ struct ContentView: View {
     }
 
     var groupedAndSortedEvents: [Event] {
-        let groupedEvents: [Event]
-
-        switch groupingOption {
-        case .none:
-            groupedEvents = filteredEvents
-        case .subject:
-            groupedEvents = filteredEvents.sorted(by: { $0.subject < $1.subject })
+        let sortedEvents = filteredEvents.sorted { first, second in
+            let isAscending = sortingDirection == .ascending
+            switch sortingOption {
+            case .date:
+                return isAscending ? first.date < second.date : first.date > second.date
+            case .name:
+                return isAscending ? first.title.lowercased() < second.title.lowercased() : first.title.lowercased() > second.title.lowercased()
+            }
         }
-
-        switch sortingOption {
-        case .date:
-            return groupedEvents.sorted(by: { $0.date < $1.date })
-        case .name:
-            return groupedEvents.sorted(by: { $0.title < $1.title })
-        }
+        return sortedEvents
     }
 
     var groupedEventsBySubject: [String: [Event]] {
         var grouped = Dictionary(grouping: filteredEvents, by: { $0.subject })
         for (key, value) in grouped {
             grouped[key] = value.sorted {
+                let isAscending = sortingDirection == .ascending
                 switch sortingOption {
                 case .date:
-                    return $0.date < $1.date
+                    return isAscending ? $0.date < $1.date : $0.date > $1.date
                 case .name:
-                    return $0.title < $1.title
+                    return isAscending ? $0.title.lowercased() < $1.title.lowercased() : $0.title.lowercased() > $1.title.lowercased()
                 }
             }
         }
@@ -200,11 +230,10 @@ struct ContentView: View {
 
         let sampleEvent = Event(title: "cus", subject: "tom", date: Date())
         container.mainContext.insert(sampleEvent)
-        
+
         let tasks = [Task(text: "Task 1", isDone: true), Task(text: "Task 2", isDone: false)]
         let item = Event(title: "Meeting", subject: "Discuss project", type: .project, tasks: tasks)
         container.mainContext.insert(item)
-
 
         return ContentView()
             .modelContainer(container)
