@@ -37,12 +37,12 @@ struct EventItem: View {
                     .foregroundColor(eventTypeColor)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 8)
+                    .background(eventTypeColor.opacity(0.2)) // Adding background color with opacity
                     .cornerRadius(100)
                     .overlay(
                         RoundedRectangle(cornerRadius: 100)
                             .stroke(eventTypeColor, lineWidth: 1.5)
                     )
-
                 Spacer()
 
                 Text(item.date.formatted(date: .numeric, time: .shortened))
