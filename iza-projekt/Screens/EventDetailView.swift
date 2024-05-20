@@ -19,20 +19,7 @@ struct EventDetailView: View {
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("General")) {
-                    TextField("Title", text: $item.title)
-                    TextField("Subject", text: $item.subject)
-                    DatePicker("Date", selection: $item.date)
-                }
-
-                Section("Type") {
-                    Picker("Type", selection: $item.type) {
-                        Text("General").tag(EventType.general)
-                        Text("Project").tag(EventType.project)
-                        Text("Final").tag(EventType.final)
-                        Text("Midterm").tag(EventType.midterm)
-                    }
-                }
+                EventForm(item: $item) // Use the new form component
 
                 Section(header: Text("Tasks")) {
                     List {

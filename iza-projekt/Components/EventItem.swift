@@ -11,8 +11,22 @@ import SwiftUI
 struct EventItem: View {
     var item: Event
     @Environment(\.colorScheme) var colorScheme
+
     var onDelete: () -> Void // Closure to handle deletion
     var onEdit: () -> Void // Closure to handle editing
+
+    var eventTypeColor: Color {
+        switch item.type {
+        case .midterm:
+            return .orange
+        case .final:
+            return .red
+        case .general:
+            return .gray
+        case .project:
+            return .blue
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,13 +34,13 @@ struct EventItem: View {
                 Text(item.type.rawValue.capitalized)
                     .font(.caption2)
                     .bold()
-                    .foregroundColor(.pink)
+                    .foregroundColor(eventTypeColor)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 8)
                     .cornerRadius(100)
                     .overlay(
                         RoundedRectangle(cornerRadius: 100)
-                            .stroke(.pink, lineWidth: 1.5)
+                            .stroke(eventTypeColor, lineWidth: 1.5)
                     )
 
                 Spacer()

@@ -9,10 +9,10 @@ import Foundation
 import SwiftData
 
 enum EventType: String, Codable, CaseIterable {
-    case midterm
-    case final
     case general
     case project
+    case midterm
+    case final
 }
 
 enum Status: Codable {
