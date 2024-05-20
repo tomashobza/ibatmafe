@@ -49,8 +49,4 @@ class Event {
         self.status = status
         self.tasks = tasks
     }
-    
-    var progress: Int {
-        return Int(Double(tasks.filter { $0.isDone }.count) / Double(tasks.count) * 100)
-    }
 }
