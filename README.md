@@ -28,9 +28,9 @@ In terms of persistent data, the model is pretty simple. Each user has a list of
 
 ## 📝 Usage examples
 
-| This video showcases the process of creating an event and editing that event. It also shows the filtering/sorting options of the main screen dashboard. | ![Osobní Replay Final (1)](docs/Osobní Replay Final (1).gif) |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| This video showcases the support for dark mode and deleting an Event. | ![Osobní Replay Final](docs/Osobní Replay Final.gif)         |
+| This video showcases the process of creating an event and editing that event. It also shows the filtering/sorting options of the main screen dashboard. | ![Osobní Replay Final (1)](docs/lightmode.gif) |
+| ------------------------------------------------------------ | ---------------------------------------------- |
+| This video showcases the support for dark mode and deleting an Event. | ![Osobní Replay Final](docs/darkmode.gif)      |
 
 ## 🧪 Testing
 
