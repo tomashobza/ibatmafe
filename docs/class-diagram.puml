@@ -1,0 +1,39 @@
+@startuml class-diagram
+
+class Task {
+    - id: UUID
+    - text: String
+    - isDone: Bool
+}
+
+class Event {
+    - title: String
+    - subject: String
+    - date: Date
+    - type: EventType
+    - status: Status
+    - tasks: List<Task>
+}
+
+enum EventType {
+    general
+    project
+    midterm
+    final
+}
+
+enum Status {
+    upcoming
+    inProgress
+    done
+}
+
+Event - EventType : "is of"
+Event -left- Status : "has"
+
+Status : - description: String {get}
+Event "1" *-- "many" Task : contains
+Event : - type : EventType
+Event : - status : Status
+
+@enduml

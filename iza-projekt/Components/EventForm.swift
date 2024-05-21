@@ -27,7 +27,7 @@ struct EventForm: View {
             if showTitleSuggestions && !item.title.isEmpty {
                 ScrollView {
                     VStack(alignment: .leading) {
-                        ForEach(events.map { $0.title }.filter { $0.lowercased().contains(item.title) }, id: \.self) { suggestion in
+                        ForEach(events.map { $0.title }.filter { $0.lowercased().contains(item.title.lowercased()) }, id: \.self) { suggestion in
                             Button(action: {
                                 item.title = suggestion
                             }) {
@@ -46,7 +46,7 @@ struct EventForm: View {
             if showSubjectSuggestions && !item.subject.isEmpty {
                 ScrollView {
                     VStack(alignment: .leading) {
-                        ForEach(events.map { $0.subject }.filter { $0.lowercased().contains(item.subject) }, id: \.self) { suggestion in
+                        ForEach(events.map { $0.subject }.filter { $0.lowercased().contains(item.subject.lowercased()) }, id: \.self) { suggestion in
                             Button(action: {
                                 item.subject = suggestion
                             }) {
