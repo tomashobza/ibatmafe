@@ -1,0 +1,45 @@
+@startuml component-tree
+
+allowmixing
+
+package "iza_projektApp" {
+    component iza_projektApp
+}
+
+package "Views" {
+    component ContentView
+    component GrainyTextureView
+    component NewEventDrawer
+    component EventDetailView
+}
+
+package "Components" {
+    component EventDashboard
+    component EventDashboardOptions
+    component EventItem
+    component EventDetails
+    component EventForm
+    component EventDateBadge
+    component EventProgressBar
+    component EventTypeBadge
+    component CustomSearchBar
+}
+
+iza_projektApp --> ContentView : contains
+ContentView --> EventDashboard : contains
+ContentView --> EventDashboardOptions : contains
+ContentView --> NewEventDrawer : contains
+ContentView --> EventDetailView : contains
+
+EventDetailView --> EventForm : contains
+NewEventDrawer --> EventForm : contains
+
+EventDashboard --> EventItem : contains
+EventItem --> EventDetails : contains
+EventItem --> EventDateBadge : contains
+EventItem --> EventProgressBar : contains
+EventItem --> EventTypeBadge : contains
+
+ContentView --> CustomSearchBar : contains
+
+@enduml
