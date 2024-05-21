@@ -14,21 +14,28 @@ struct EventDashboard: View {
     var editEvent: (Event) -> Void
 
     var body: some View {
-        Group {
-            if groupingOption == .subject {
-                // Logic to display events grouped by subject
-                ForEach(groupedEventsBySubject(events).keys.sorted(), id: \.self) { subject in
-                    VStack(alignment: .leading) {
-                        Text(subject).font(.headline)
-                        ForEach(groupedEventsBySubject(events)[subject]!, id: \.self) { event in
-                            EventItem(item: event, onDelete: { deleteEvent(event) }, onEdit: { editEvent(event) })
+        if events.isEmpty {
+            Text("There's nothing here.")
+                .font(.subheadline)
+                .opacity(0.5)
+
+        } else {
+            Group {
+                if groupingOption == .subject {
+                    // Logic to display events grouped by subject
+                    ForEach(groupedEventsBySubject(events).keys.sorted(), id: \.self) { subject in
+                        VStack(alignment: .leading) {
+                            Text(subject).font(.headline)
+                            ForEach(groupedEventsBySubject(events)[subject]!, id: \.self) { event in
+                                EventItem(item: event, onDelete: { deleteEvent(event) }, onEdit: { editEvent(event) })
+                            }
                         }
                     }
-                }
-            } else {
-                // Logic to display events in a single list
-                ForEach(events, id: \.self) { event in
-                    EventItem(item: event, onDelete: { deleteEvent(event) }, onEdit: { editEvent(event) })
+                } else {
+                    // Logic to display events in a single list
+                    ForEach(events, id: \.self) { event in
+                        EventItem(item: event, onDelete: { deleteEvent(event) }, onEdit: { editEvent(event) })
+                    }
                 }
             }
         }

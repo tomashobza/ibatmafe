@@ -56,6 +56,7 @@ struct ContentView: View {
                     .searchable(text: $searchText) // Search bar integration
                 }
             }
+            .frame(maxWidth: .infinity)
             .background(GrainyTextureView().opacity(0.5).ignoresSafeArea(.all))
             .background(colorScheme == .dark ? .bg : .oranzova)
             .sheet(isPresented: $showingSheet) {
@@ -117,11 +118,15 @@ struct ContentView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Event.self, configurations: config)
+
         let sampleEvent = Event(title: "cus", subject: "tom", date: Date())
-        container.mainContext.insert(sampleEvent)
+
         let tasks = [Task(text: "Task 1", isDone: true), Task(text: "Task 2", isDone: false)]
         let item = Event(title: "Meeting", subject: "Discuss project", type: .project, tasks: tasks)
-        container.mainContext.insert(item)
+
+//        container.mainContext.insert(sampleEvent)
+//        container.mainContext.insert(item)
+
         return ContentView()
             .modelContainer(container)
     } catch {
